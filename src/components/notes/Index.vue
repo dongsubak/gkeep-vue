@@ -1,5 +1,11 @@
 <template>
-  <!-- add html here -->
+  <ol>
+    <li v-for="note in notes">
+      <pre>
+        {{note | json}}
+      </pre>
+    </li>
+  </ol>
 </template>
 <script>
 import Firebase from 'firebase'
