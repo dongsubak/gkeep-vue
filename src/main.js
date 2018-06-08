@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Firebase from 'firebase'
 
 Vue.config.productionTip = false
 
@@ -12,4 +13,13 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+
+let firebase = new Firebase('https://gkeep-vuefirebase.firebaseio.com/')
+
+firebase.child('notes').set([{title: 'Hello', content: 'Lorem'}])
+firebase.child('notes').on('value', (snapshot) => {
+  let notes = snapshot.val()
+  console.log(notes)
+  window.alert(notes[0].title)
 })
